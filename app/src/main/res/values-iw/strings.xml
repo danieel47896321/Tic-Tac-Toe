@@ -4,4 +4,7 @@
     <string name="Turn">תור</string>
     <string name="PlayerX">שחקן X</string>
     <string name="PlayerO">שחקן O</string>
+    <string name="OK">אישור</string>
+    <string name="Finish">סיום</string>
+    <string name="Won">ניצח</string>
 </resources>

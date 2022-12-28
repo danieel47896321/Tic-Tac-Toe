@@ -3,4 +3,7 @@
     <string name="Turn">Turn</string>
     <string name="PlayerX">Player X</string>
     <string name="PlayerO">Player O</string>
+    <string name="OK">OK</string>
+    <string name="Finish">Finish</string>
+    <string name="Won">Won</string>
 </resources>

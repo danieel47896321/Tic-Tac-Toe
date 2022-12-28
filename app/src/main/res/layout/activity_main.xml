@@ -1,107 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@drawable/background"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textViewTurn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="@string/Turn"
         android:textColor="@color/black"
         android:textSize="40sp"
-        android:padding="10dp"
+        android:padding="5dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        style="@style/TextViewPlayer"
-        android:id="@+id/textViewPlayerX"
-        android:text="@string/PlayerX"
-        app:layout_constraintEnd_toStartOf="@+id/textViewTurn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTurn" />
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        style="@style/TextViewPlayer"
-        android:id="@+id/textViewPlayerO"
-        android:text="@string/PlayerO"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewTurn"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTurn" />
+        <TextView
+            android:id="@+id/textViewPlayerX"
+            style="@style/TextViewPlayer"
+            android:text="@string/PlayerX" />
+
+        <TextView
+            android:id="@+id/textViewPlayerO"
+            style="@style/TextViewPlayer"
+            android:text="@string/PlayerO"/>
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="1:1"
-        android:padding="20dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTurn">
 
         <LinearLayout style="@style/LinearLayoutRow">
-            <Button
-                android:id="@+id/index00"
-                style="@style/ButtonCol"/>
-
-            <View style="@style/VerticalLine"/>
 
             <Button
-                android:id="@+id/index01"
-                style="@style/ButtonCol"/>
+                android:id="@+id/a0"
+                style="@style/ButtonCol" />
 
-            <View style="@style/VerticalLine"/>
+            <View style="@style/VerticalLine" />
 
             <Button
-                android:id="@+id/index02"
-                style="@style/ButtonCol"/>
+                android:id="@+id/a1"
+                style="@style/ButtonCol" />
+
+            <View style="@style/VerticalLine" />
+
+            <Button
+                android:id="@+id/a2"
+                style="@style/ButtonCol" />
         </LinearLayout>
 
-        <View style="@style/HorizontalLine"/>
+        <View style="@style/HorizontalLine" />
 
         <LinearLayout style="@style/LinearLayoutRow">
-            <Button
-                android:id="@+id/index10"
-                style="@style/ButtonCol"/>
-
-            <View style="@style/VerticalLine"/>
 
             <Button
-                android:id="@+id/index11"
-                style="@style/ButtonCol"/>
+                android:id="@+id/b0"
+                style="@style/ButtonCol" />
 
-            <View style="@style/VerticalLine"/>
+            <View style="@style/VerticalLine" />
 
             <Button
-                android:id="@+id/index12"
-                style="@style/ButtonCol"/>
+                android:id="@+id/b1"
+                style="@style/ButtonCol" />
+
+            <View style="@style/VerticalLine" />
+
+            <Button
+                android:id="@+id/b2"
+                style="@style/ButtonCol" />
         </LinearLayout>
 
-        <View style="@style/HorizontalLine"/>
+        <View style="@style/HorizontalLine" />
 
         <LinearLayout style="@style/LinearLayoutRow">
-            <Button
-                android:id="@+id/index20"
-                style="@style/ButtonCol"/>
-
-            <View style="@style/VerticalLine"/>
 
             <Button
-                android:id="@+id/index21"
-                style="@style/ButtonCol"/>
+                android:id="@+id/c0"
+                style="@style/ButtonCol" />
 
-            <View style="@style/VerticalLine"/>
+            <View style="@style/VerticalLine" />
 
             <Button
-                android:id="@+id/index22"
-                style="@style/ButtonCol"/>
+                android:id="@+id/c1"
+                style="@style/ButtonCol" />
+
+            <View style="@style/VerticalLine" />
+
+            <Button
+                android:id="@+id/c2"
+                style="@style/ButtonCol" />
         </LinearLayout>
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
