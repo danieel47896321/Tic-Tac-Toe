@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">איקס עיגול</string>
+    <string name="Turn">תור</string>
+    <string name="PlayerX">שחקן X</string>
+    <string name="PlayerO">שחקן O</string>
+</resources>
