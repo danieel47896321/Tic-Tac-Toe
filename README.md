@@ -1,6 +1,7 @@
 # Tic-Tac-Toe Application
 
 Tic-Tac-Toe game play it and try to win.
+
 Implemented MVC architecture.
 
 ![CHEESE!](https://user-images.githubusercontent.com/74861262/209870838-fa034096-ee97-4c00-86c0-61e0cb21853e.png)
