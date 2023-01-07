@@ -7,4 +7,5 @@
     <string name="OK">אישור</string>
     <string name="Finish">סיום</string>
     <string name="Won">ניצח</string>
+    <string name="TieGame">המשחק הסתיים בתיקו</string>
 </resources>

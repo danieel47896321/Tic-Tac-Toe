@@ -6,4 +6,5 @@
     <string name="OK">OK</string>
     <string name="Finish">Finish</string>
     <string name="Won">Won</string>
+    <string name="TieGame">Tie Game</string>
 </resources>
