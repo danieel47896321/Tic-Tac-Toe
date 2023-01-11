@@ -9,4 +9,9 @@ class MainModel: ViewModel() {
     var playerTurn : PlayerTurn = PlayerTurn.X_TURN
     var p1Score = 0
     var p2Score = 0
+    var winner = ""
+    var boardID = "setBoard"
+    var updateInfoID = "setInfo"
+    var clearBoardID = "clearBoard"
+    var winnerID = "winner"
 }

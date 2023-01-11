@@ -1,15 +1,26 @@
 package com.example.tictactoe.controller
 
 import android.widget.Button
+import androidx.lifecycle.ViewModelProvider
 import com.example.tictactoe.MainActivity
 import com.example.tictactoe.R
 import com.example.tictactoe.enum.Mark
 import com.example.tictactoe.enum.PlayerTurn
 import com.example.tictactoe.model.MainModel
 
-class MainController(var mainModel: MainModel, var view: MainActivity) {
+class MainController(var view: MainActivity) {
+    private var mainModel = ViewModelProvider(view)[MainModel::class.java]
+    fun getWinner(): String { return mainModel.winner }
+    fun getPlayerX(): String { return "${view.resources.getString(R.string.PlayerX)}\n" + mainModel.p1Score.toString() }
+    fun getPlayerY(): String { return "${view.resources.getString(R.string.PlayerO)}\n" + mainModel.p2Score.toString() }
+    fun getCurrentTurn(): String {
+        var currentTurn = "${view.resources.getString(R.string.Turn)} ${view.resources.getString(R.string.PlayerX)}"
+        if(mainModel.playerTurn == PlayerTurn.O_TURN)
+            currentTurn = "${view.resources.getString(R.string.Turn)} ${view.resources.getString(R.string.PlayerO)}"
+        return currentTurn
+    }
     fun setGame() {
-        view.setBoard()
+        view.mainWhenCase(mainModel.boardID)
         updateView()
     }
     fun setCell(a0: Button, row: Int, col: Int) {
@@ -17,14 +28,7 @@ class MainController(var mainModel: MainModel, var view: MainActivity) {
             a0.text = if(mainModel.board[row][col] == Mark.X) "X" else "O"
         }
     }
-    private fun updateView() {
-        var currentTurn = "${view.resources.getString(R.string.Turn)} ${view.resources.getString(R.string.PlayerX)}"
-        if(mainModel.playerTurn == PlayerTurn.O_TURN)
-            currentTurn = "${view.resources.getString(R.string.Turn)} ${view.resources.getString(R.string.PlayerO)}"
-        val xPlayerScore = "${view.resources.getString(R.string.PlayerX)}\n" + mainModel.p1Score.toString()
-        val oPlayerScore = "${view.resources.getString(R.string.PlayerO)}\n" + mainModel.p2Score.toString()
-        view.setInfo(xPlayerScore, oPlayerScore, currentTurn)
-    }
+    private fun updateView() { view.mainWhenCase(mainModel.updateInfoID) }
     fun boardSelected(selected: Button, i: Int, j: Int) {
         if(mainModel.board[i][j] == Mark.NONE){
             if(mainModel.playerTurn == PlayerTurn.X_TURN) {
@@ -44,8 +48,10 @@ class MainController(var mainModel: MainModel, var view: MainActivity) {
     private fun winnerCheck(cell: Mark, player: String){
         if(checkRow(cell) || checkCol(cell) || checkSlant(cell))
             winner(player)
-        else if(tieCheck())
-            view.winner(view.resources.getString(R.string.TieGame))
+        else if(tieCheck()) {
+            mainModel.winner = view.resources.getString(R.string.TieGame)
+            view.mainWhenCase(mainModel.winnerID)
+        }
     }
     private fun tieCheck(): Boolean {
         for(row in 0..2)
@@ -69,11 +75,11 @@ class MainController(var mainModel: MainModel, var view: MainActivity) {
                 ( mainModel.board[2][0] == cell && mainModel.board[1][1] == cell && mainModel.board[0][2] == cell )
     }
     private fun winner(s: String){
-        var winner = "${view.resources.getString(R.string.PlayerO)} ${view.resources.getString(R.string.Won)}"
+        mainModel.winner = "${view.resources.getString(R.string.PlayerO)} ${view.resources.getString(R.string.Won)}"
         if(s == "X")
-            winner = "${view.resources.getString(R.string.PlayerX)} ${view.resources.getString(R.string.Won)}"
+            mainModel.winner = "${view.resources.getString(R.string.PlayerX)} ${view.resources.getString(R.string.Won)}"
         addScore(s)
-        view.winner(winner)
+        view.mainWhenCase(mainModel.winnerID)
     }
     private fun addScore(s: String){
         if(s == "X")
@@ -85,7 +91,7 @@ class MainController(var mainModel: MainModel, var view: MainActivity) {
         for(row in 0..2)
             for(col in 0..2)
                 mainModel.board[row][col] = Mark.NONE
-        view.clearBoard()
+        view.mainWhenCase(mainModel.clearBoardID)
         updateView()
     }
 }

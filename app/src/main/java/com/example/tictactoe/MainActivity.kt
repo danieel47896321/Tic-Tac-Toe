@@ -5,12 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
 import com.example.tictactoe.controller.MainController
-import com.example.tictactoe.enum.Mark
-import com.example.tictactoe.model.MainModel
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var mainController: MainController
     private lateinit var textViewTurn: TextView
     private lateinit var textViewPlayerX: TextView
     private lateinit var textViewPlayerO: TextView
@@ -23,16 +21,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var c0: Button
     private lateinit var c1: Button
     private lateinit var c2: Button
-    private lateinit var mainModel: MainModel
-    private lateinit var mainController: MainController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         init()
     }
     private fun init(){
-        mainModel = ViewModelProvider(this)[MainModel::class.java]
-        mainController = MainController(mainModel, this)
+        mainController = MainController(this)
         textViewTurn = findViewById(R.id.textViewTurn)
         textViewPlayerX = findViewById(R.id.textViewPlayerX)
         textViewPlayerO = findViewById(R.id.textViewPlayerO)
@@ -48,6 +43,15 @@ class MainActivity : AppCompatActivity() {
         mainController.setGame()
         setButtonClick()
     }
+    fun mainWhenCase(id: String){
+        when(id){
+            "setBoard" -> { setBoard() }
+            "setInfo" -> { setInfo(mainController.getPlayerX(), mainController.getPlayerY(), mainController.getCurrentTurn()) }
+            "clearBoard" -> { clearBoard("") }
+            "winner" -> { winner(mainController.getWinner()) }
+
+        }
+    }
     private fun setButtonClick() {
         a0.setOnClickListener{ mainController.boardSelected(a0, 0, 0) }
         a1.setOnClickListener{ mainController.boardSelected(a1, 0, 1) }
@@ -59,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         c1.setOnClickListener{ mainController.boardSelected(c1, 2, 1) }
         c2.setOnClickListener{ mainController.boardSelected(c2, 2, 2) }
     }
-    fun setBoard() {
+    private fun setBoard() {
         mainController.setCell(a0, 0, 0)
         mainController.setCell(a1, 0, 1)
         mainController.setCell(a2, 0, 2)
@@ -70,28 +74,29 @@ class MainActivity : AppCompatActivity() {
         mainController.setCell(c1, 2, 1)
         mainController.setCell(c2, 2, 2)
     }
-    fun setInfo(playerX: String, playerO: String, currentTurn: String){
+    private fun setInfo(playerX: String, playerO: String, currentTurn: String){
         textViewPlayerX.text = playerX
         textViewPlayerO.text = playerO
         textViewTurn.text = currentTurn
     }
-    fun winner(s: String) {
+    private fun winner(message: String) {
+        mainController.clearBoard()
         val builder = AlertDialog.Builder(this, R.style.AlertDialog)
         builder.setTitle(resources.getString(R.string.Finish))
-        builder.setMessage(s)
-        builder.setPositiveButton(R.string.OK) { _, _ -> mainController.clearBoard() }
+        builder.setMessage(message)
+        builder.setPositiveButton(R.string.OK) { _, _ -> }
         builder.setCancelable(false)
         builder.show()
     }
-    fun clearBoard() {
-        a0.text = ""
-        a1.text = ""
-        a2.text = ""
-        b0.text = ""
-        b1.text = ""
-        b2.text = ""
-        c0.text = ""
-        c1.text = ""
-        c2.text = ""
+    private fun clearBoard(text: String) {
+        a0.text = text
+        a1.text = text
+        a2.text = text
+        b0.text = text
+        b1.text = text
+        b2.text = text
+        c0.text = text
+        c1.text = text
+        c2.text = text
     }
 }
