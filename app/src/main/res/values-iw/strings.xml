@@ -3,9 +3,16 @@
     <string name="app_name">איקס עיגול</string>
     <string name="Turn">תור</string>
     <string name="PlayerX">שחקן X</string>
+    <string name="PlayerXName">שם שחקן X</string>
     <string name="PlayerO">שחקן O</string>
+    <string name="PlayerOName">שם שחקן O</string>
     <string name="OK">אישור</string>
     <string name="Finish">סיום</string>
     <string name="Won">ניצח</string>
     <string name="TieGame">המשחק הסתיים בתיקו</string>
+    <string name="ClickHere">לחץ כאן</string>
+    <string name="EnterPlayerNames">הזן את שמות השחקנים</string>
+    <string name="Play">שחק</string>
+    <string name="Required">חובה</string>
+    <string name="Score">0</string>
 </resources>

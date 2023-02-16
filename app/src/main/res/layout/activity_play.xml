@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/grey"
+    tools:context=".Play">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutX"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/current_player_turn_frame"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView"
+        app:layout_constraintEnd_toStartOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cardView">
+
+        <TextView
+            android:id="@+id/textViewPlayerXName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/PlayerXName"
+            android:textColor="@color/blue"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/x" />
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/LinearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/LinearLayout"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/LinearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewPlayerXScore"
+                    style="@style/TextViewPlayer"
+                    android:text="@string/Score" />
+
+            </LinearLayout>
+
+            <View style="@style/VerticalLine" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewPlayerOScore"
+                    style="@style/TextViewPlayer"
+                    android:text="0" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayoutO"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/waiting_player_turn_frame"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="@+id/cardView">
+
+        <TextView
+            android:id="@+id/textViewPlayerOName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/PlayerOName"
+            android:textColor="@color/yellow"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/o" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/board_background"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout style="@style/LinearLayoutRow">
+
+            <ImageView
+                android:id="@+id/a0"
+                style="@style/ImageViewCol" />
+
+            <View style="@style/VerticalLine" />
+
+            <ImageView
+                android:id="@+id/a1"
+                style="@style/ImageViewCol" />
+
+            <View style="@style/VerticalLine" />
+
+            <ImageView
+                android:id="@+id/a2"
+                style="@style/ImageViewCol" />
+
+        </LinearLayout>
+
+        <View style="@style/HorizontalLine" />
+
+        <LinearLayout style="@style/LinearLayoutRow">
+
+            <ImageView
+                android:id="@+id/b0"
+                style="@style/ImageViewCol" />
+
+            <View style="@style/VerticalLine" />
+
+            <ImageView
+                android:id="@+id/b1"
+                style="@style/ImageViewCol" />
+
+            <View style="@style/VerticalLine" />
+
+            <ImageView
+                android:id="@+id/b2"
+                style="@style/ImageViewCol" />
+
+        </LinearLayout>
+
+        <View style="@style/HorizontalLine" />
+
+        <LinearLayout style="@style/LinearLayoutRow">
+
+            <ImageView
+                android:id="@+id/c0"
+                style="@style/ImageViewCol" />
+
+            <View style="@style/VerticalLine" />
+
+            <ImageView
+                android:id="@+id/c1"
+                style="@style/ImageViewCol" />
+
+            <View style="@style/VerticalLine" />
+
+            <ImageView
+                android:id="@+id/c2"
+                style="@style/ImageViewCol" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
