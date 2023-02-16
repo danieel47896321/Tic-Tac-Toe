@@ -38,4 +38,10 @@ class SetPlayersController(private var view: SetPlayers, private var setPlayersM
         }
         return flag
     }
+    fun updatePlayerXName(text: String) {
+        setPlayersModel.playerX = text
+    }
+    fun updatePlayerOName(text: String) {
+        setPlayersModel.playerO = text
+    }
 }
