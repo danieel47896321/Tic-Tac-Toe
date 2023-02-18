@@ -8,8 +8,10 @@ import com.example.tictactoe.enum.PlayerTurn
 import com.example.tictactoe.model.PlayModel
 
 class PlayController(private var view: Play, private var playModel: PlayModel) {
-    fun setGame() {
+    fun setGame(playerXName: String, playerOName: String) {
         view.setBoard()
+        playModel.p1Name = playerXName
+        playModel.p2Name = playerOName
         updateView()
     }
     private fun updateView() {
@@ -30,24 +32,30 @@ class PlayController(private var view: Play, private var playModel: PlayModel) {
             if(playModel.playerTurn == PlayerTurn.X_TURN) {
                 playModel.board[i][j] = Mark.X
                 selected.setImageResource(R.drawable.x)
-                playModel.playerTurn = PlayerTurn.O_TURN
-                winnerCheck(Mark.X, "X")
+                if (!winnerCheck(Mark.X, "X")) {
+                    playModel.playerTurn = PlayerTurn.O_TURN
+                }
             } else {
                 playModel.board[i][j] = Mark.O
                 selected.setImageResource(R.drawable.o)
-                playModel.playerTurn = PlayerTurn.X_TURN
-                winnerCheck(Mark.O, "O")
+                if (!winnerCheck(Mark.O, "O")) {
+                    playModel.playerTurn = PlayerTurn.X_TURN
+                }
             }
             updateView()
         }
     }
-    private fun winnerCheck(cell: Mark, player: String){
-        if(checkRow(cell) || checkCol(cell) || checkSlant(cell))
+    private fun winnerCheck(cell: Mark, player: String): Boolean {
+        if(checkRow(cell) || checkCol(cell) || checkSlant(cell)) {
             winner(player)
+            return true
+        }
         else if(tieCheck()) {
             playModel.winner = view.resources.getString(R.string.TieGame)
             view.winner(playModel.winner)
+            return true
         }
+        return false
     }
     private fun tieCheck(): Boolean {
         for(row in 0..2)
@@ -71,9 +79,9 @@ class PlayController(private var view: Play, private var playModel: PlayModel) {
                 ( playModel.board[2][0] == cell && playModel.board[1][1] == cell && playModel.board[0][2] == cell )
     }
     private fun winner(s: String){
-        playModel.winner = "${view.resources.getString(R.string.PlayerO)} ${view.resources.getString(R.string.Won)}"
+        playModel.winner = "${playModel.p2Name} (O) ${view.resources.getString(R.string.Won)}"
         if(s == "X")
-            playModel.winner = "${view.resources.getString(R.string.PlayerX)} ${view.resources.getString(R.string.Won)}"
+            playModel.winner = "${playModel.p1Name} (X) ${view.resources.getString(R.string.Won)}"
         addScore(s)
         view.winner(playModel.winner)
     }

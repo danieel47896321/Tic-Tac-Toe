@@ -18,7 +18,6 @@ class SetPlayersController(private var view: SetPlayers, private var setPlayersM
             intent.putExtra("playerXName", playerX)
             intent.putExtra("playerOName", playerO)
             view.startActivity(intent)
-            view.finish()
         }
     }
     private fun checkInput(playerX: String, playerO: String): Boolean {
@@ -37,11 +36,5 @@ class SetPlayersController(private var view: SetPlayers, private var setPlayersM
             view.setPlayerOHelper("")
         }
         return flag
-    }
-    fun updatePlayerXName(text: String) {
-        setPlayersModel.playerX = text
-    }
-    fun updatePlayerOName(text: String) {
-        setPlayersModel.playerO = text
     }
 }

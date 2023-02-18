@@ -2,8 +2,6 @@ package com.example.tictactoe
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.widget.Button
 import androidx.lifecycle.ViewModelProvider
 import com.example.tictactoe.controller.SetPlayersController
@@ -29,23 +27,6 @@ class SetPlayers : AppCompatActivity() {
         buttonPlay = findViewById(R.id.buttonPlay)
         setPlayersController.setNames()
         playButton()
-        saveInput()
-    }
-    private fun saveInput() {
-        textInputLayoutPlayerX.editText?.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                setPlayersController.updatePlayerXName(textInputLayoutPlayerX.editText!!.text.toString())
-            }
-            override fun afterTextChanged(s: Editable) {}
-        })
-        textInputLayoutPlayerO.editText?.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                setPlayersController.updatePlayerOName(textInputLayoutPlayerO.editText!!.text.toString())
-            }
-            override fun afterTextChanged(s: Editable) {}
-        })
     }
     private fun playButton(){
         buttonPlay.setOnClickListener {

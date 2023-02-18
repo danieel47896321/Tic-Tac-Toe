@@ -56,7 +56,7 @@ class Play : AppCompatActivity() {
         c0 = findViewById(R.id.c0)
         c1 = findViewById(R.id.c1)
         c2 = findViewById(R.id.c2)
-        mainController.setGame()
+        mainController.setGame(playerXName, playerOName)
         setButtonClick()
     }
     private fun setButtonClick() {
@@ -86,11 +86,12 @@ class Play : AppCompatActivity() {
         textViewPlayerOScore.text = playerOScore
     }
     fun winner(message: String) {
-        mainController.clearBoard()
         val builder = AlertDialog.Builder(this, R.style.AlertDialog)
         builder.setTitle(resources.getString(R.string.Finish))
         builder.setMessage(message)
-        builder.setPositiveButton(R.string.OK) { _, _ -> }
+        builder.setPositiveButton(R.string.OK) { _, _ ->
+            mainController.clearBoard()
+        }
         builder.setCancelable(false)
         builder.show()
     }
@@ -105,7 +106,6 @@ class Play : AppCompatActivity() {
         c1.setImageResource(0)
         c2.setImageResource(0)
     }
-
     fun updateTurn(playerTurn: PlayerTurn) {
         if (playerTurn == PlayerTurn.X_TURN) {
             linearLayoutX.background = getDrawable(R.drawable.current_player_turn_frame)
